@@ -54,4 +54,15 @@ jobs:
           name: ci-build-log
           path: ci-build.log
 
+    - name: Save diff to file
+      run: |
+        git fetch origin main
+        git diff origin/main -- .github/workflows/maven.yml > nondex_method1.diff
+
+    - name: Upload diff file
+      uses: actions/upload-artifact@v4
+      with:
+        name: nondex_method1-diff
+        path: nondex_method1.diff
+
    
